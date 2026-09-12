@@ -1,4 +1,4 @@
-# Nova_Enterprise_knowledge_assistant
+# Enterprise_knowledge_assistant
 
 Project File Guide — Enterprise Knowledge Assistant
 A folder-by-folder, file-by-file reference for everyone on the team working with this codebase. For deeper design rationale, see docs/architecture.md; for setup instructions, see docs/deployment_guide.md.
@@ -68,29 +68,42 @@ If you're new to the codebase: start by reading README.md, then docs/architectur
 
 
 	
-	Running the project locally-------------------------------------------------------
-
+	Running the project locally
+	-------------------------------------------------------
 
 	1. Check prerequisites
 	Make sure Python 3.10+ is installed (python3 --version). 
 	You'll also need pip. No Node.js or other runtime is required to run the app itself — that's only needed if you want to regenerate the document-generator scripts.
+
+	Install Visual Studio
+
+	2. Clone Repository
+	Open Visual Studio
+	Click on File --> Clone Repository
+	Provide location as : https://github.com/vhanawa1/Enterprise_knowledge_assistant.git
+	Click on Clone button
 	
 	2. Open a terminal in the project folder
 	cd into the folder containing app.py, config.py, ingestion/, rag/, data/, etc. If you're using VS Code, open this folder and use the integrated terminal (Ctrl+`).
 	
+	Command:  cd .\Enterprise_knowledge_assistant\
+
 	3. Create and activate a virtual environment
-	python3 -m venv venv, 
+	Command: python3 -m venv venv, 
 	
 	then activate it using below commands: 
-		Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+	Command: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-		source venv/bin/activate (macOS/Linux) 
+	(macOS/Linux) 
+	Command: source venv/bin/activate 
 		or 
-		venv\Scripts\Activate.ps1 (Windows PowerShell). 
+	(Windows PowerShell)
+	Command: venv\Scripts\Activate.ps1 
 		You should see (venv) at the start of your prompt once it's active.
 
 	4. Install dependencies
-	pip install -r requirements.txt (with the venv active). 
+	Command: pip install -r requirements.txt 
+
 	This installs openai, chromadb, streamlit, pypdf, python-docx, python-pptx, sentence-transformers, python-dotenv, and everything else the pipeline needs. 
 	The first install can take a few minutes.
 	
@@ -104,15 +117,32 @@ If you're new to the codebase: start by reading README.md, then docs/architectur
 	This should include your original corpus plus everything we've added since: Global_Employee_Handbook.pdf, Q3_FY2026_Financial_Report.pdf, the 19 Northwind Analytics gap-filling documents, and the 12 rebranded documents from the last two batches. Also confirm data/external_enterpriserag_bench/ has its 10 files if you're using that source too.
 	
 	7.	Run ingestion (first time: use --reset)
-		python -m ingestion.ingest --dir data/sample_docs --reset
-		then python -m ingestion.ingest --dir data/external_enterpriserag_bench (no --reset, so it adds to the same collection). 
+	Command: python -m ingestion.ingest --dir data/sample_docs --reset
+		then 
+	Command: python -m ingestion.ingest --dir data/external_enterpriserag_bench 
+	(no --reset, so it adds to the same collection). 
 		The --reset flag wipes any old/stale data and builds a clean manifest. First run in free mode will download the local embedding model (~90MB) — that's normal and only happens once. 
 		On every run AFTER this first one, drop --reset — delta ingestion will only embed new or changed files.
 
 	8. Launch the app
-	streamlit run app.py
+	Command: streamlit run app.py
 	Your terminal will print a Local URL, typically http://localhost:8501 —  
 	open that in your browser. The sidebar should show your current mode (🆓 FREE or 💳 PAID), department/sensitivity/organization filters, and how many chunks are indexed.
 
 
 
+GitHub :
+
+To push README.md to GitHub, run these commands in your repo directory (replace remote URL and branch as needed):
+1.	If you haven't set a remote: git remote add origin https://github.com/vhanawa1/Enterprise_knowledge_assistant.git
+2.	Stage, commit, and push: 
+git add README.md 
+git commit -m "Update README.md" 
+git push -u origin main
+Notes:
+•	If your default branch is master, replace main with master.
+•	If push fails, authenticate (SSH key or HTTPS credentials) or create the repo on GitHub first.
+
+eg.
+git add README.md; 
+git commit -m "commit README.md file"
