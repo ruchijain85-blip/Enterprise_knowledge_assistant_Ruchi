@@ -4,7 +4,11 @@ Enterprise Knowledge Assistant -- Streamlit chatbot UI.
 Run:
     streamlit run app.py
 """
+from multiprocessing import Value
 import time
+import json
+from pathlib import Path
+from datetime import datetime
 
 import streamlit as st
 
@@ -13,14 +17,134 @@ from rag.vector_store import VectorStore
 from rag.retriever import retrieve_and_rerank
 from rag.generator import generate_answer
 
-st.set_page_config(page_title="Enterprise Knowledge Assistant", page_icon="🧠", layout="wide")
+st.set_page_config(
+        #page_title="Enterprise Knowledge Assistant", 
+        page_icon="🧠", 
+        layout="wide",
+        initial_sidebar_state="expanded"
+        )
 
 CONFIDENCE_COLORS = {"High": "🟢", "Medium": "🟡", "Low": "🔴"}
+
+
+st.html(
+    """
+    <style>
+    .chat-citation {
+        font-size: 0.8rem !important; /* Makes it smaller than standard chat font */
+        color: #888888;              /* Soft gray look */
+        display: block;
+        margin-top: 2px;
+    }
+    </style>
+    """
+)
+
+
+st.markdown(
+    """
+    <style>
+      /* global app text */
+      [data-testid="stAppViewContainer"] { font-size:13px; }
+      /* markdown blocks */
+      .stMarkdown p { font-size:13px; }
+      /* chat message text (Streamlit testid/class may vary by version) */
+      [data-testid="stChatMessageText"] { font-size:13px; }
+
+      [data-testid="stMarkdownContainer"] { font-size:13px; }
+
+      [data-testid="stSidebarHeader"] {
+        height: 0rem !important; /* Forces the header div to remain small */
+        min-height: 0rem !important;}
+
+         hr {
+        margin-top: 2px !important;    /* Padding BEFORE the divider */
+        margin-bottom: 2px !important; /* Padding AFTER the divider */
+            }
+      
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 @st.cache_resource
 def get_store():
     return VectorStore()
+
+
+# Persist chat history between sessions by saving to a JSON file under data/
+HISTORY_PATH = Path(config.BASE_DIR) / "data" / "chat_history.json"
+ARCHIVE_PATH = Path(config.BASE_DIR) / "data" / "chat_archives.json"
+
+
+def load_history():
+    """Load chat history from disk. Returns a list of message dicts.
+
+    If loading fails, returns an empty list.
+    """
+    try:
+        if HISTORY_PATH.exists():
+            with open(HISTORY_PATH, "r", encoding="utf-8") as fh:
+                return json.load(fh)
+    except Exception as e:
+        # Keep UI simple: surface a small warning but continue with empty history
+        try:
+            st.warning(f"Could not load chat history: {e}")
+        except Exception:
+            pass
+    return []
+
+
+def save_history(messages):
+    """Save chat history (list of messages) to disk.
+
+    Creates parent directories if needed. Swallows errors to avoid breaking the UI.
+    """
+    try:
+        HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(HISTORY_PATH, "w", encoding="utf-8") as fh:
+            json.dump(messages, fh, ensure_ascii=False, indent=2)
+    except Exception:
+        # Non-fatal: do not raise — the app should continue even if persistence fails
+        return
+
+
+def load_archives():
+    """Load archived conversations from disk. Returns a list of archive entries.
+
+    Each entry is a dict: {"timestamp": <float>, "messages": [...]}
+    """
+    try:
+        if ARCHIVE_PATH.exists():
+            with open(ARCHIVE_PATH, "r", encoding="utf-8") as fh:
+                return json.load(fh)
+    except Exception:
+        try:
+            st.warning("Could not load archived chats")
+        except Exception:
+            pass
+    return []
+
+
+def save_archives(archives):
+    try:
+        ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(ARCHIVE_PATH, "w", encoding="utf-8") as fh:
+            json.dump(archives, fh, ensure_ascii=False, indent=2)
+    except Exception:
+        return
+
+
+def archive_current_conversation():
+    """Append the current session messages to the archives with a timestamp."""
+    try:
+        archives = load_archives()
+        entry = {"timestamp": time.time(), "messages": st.session_state.get("messages", [])}
+        archives.append(entry)
+        save_archives(archives)
+    except Exception:
+        return
 
 
 def build_where_clause(departments, sensitivities):
@@ -37,22 +161,69 @@ def build_where_clause(departments, sensitivities):
 
 
 def main():
-    st.title("🧠 Enterprise Knowledge Assistant")
-    st.caption("Ask questions in plain English. Answers are grounded in your organization's documents, with citations.")
+    #st.title("🧠 Enterprise Knowledge Assistant")
+    #st.caption("Ask questions in plain English. Answers are grounded in your organization's documents, with citations.")
 
     store = get_store()
     doc_summary = store.get_all_documents_summary()
 
+    
+
     # ---------------- Sidebar: filters + index status ----------------
     with st.sidebar:
-        if config.RAG_MODE == "free":
-            st.info(f"**FREE mode**\n\nChat: `{config.OPENROUTER_CHAT_MODEL}` (OpenRouter)\n\nEmbeddings: `{config.LOCAL_EMBEDDING_MODEL}` (local)")
+        st.header("🧠 Enterprise Knowledge Assistant", divider="rainbow")
+        col1, col2 = st.columns([1, 1])
+        with col1:
+            if st.button("➕ New chat", key="new_chat"):
+                try:
+                    archive_current_conversation()
+                except Exception:
+                    pass
+                st.session_state.messages = []
+                try:
+                    save_history([])
+                except Exception:
+                    pass
+                st.rerun()
+        with col2:
+            if st.button("🗑️ Clear chat", key="clear_chat_sidebar"):
+                st.session_state.messages = []
+                try:
+                    save_history([])
+                except Exception:
+                    pass
+                st.rerun()
+                    
+        st.header("💬 Recent chats")
+        archives = load_archives()
+        if archives:
+            recent = archives[-5:][::-1]
+            for idx, a in enumerate(recent):
+                ts = datetime.fromtimestamp(a.get("timestamp", 0)).strftime("%Y-%m-%d")
+                preview = ""
+                if a.get("messages"):
+                    for m in a["messages"]:
+                        if m.get("role") == "user":
+                            preview = m.get("content", "")[:120]
+                            break
+                    if not preview and a["messages"]:
+                        preview = a["messages"][0].get("content", "")[:120]
+                col1, col2 = st.columns([5, 1])
+                with col1:
+                    st.write(f"**{ts}** — {preview}")
+                with col2:
+                    if st.button("Open", key=f"open_archive_{idx}"):
+                        st.session_state.messages = a.get("messages", [])
+                        try:
+                            save_history(st.session_state.messages)
+                        except Exception:
+                            pass
+                        st.rerun()
         else:
-            provider_label = "Azure OpenAI" if config.PROVIDER == "azure_openai" else "OpenAI"
-            st.success(f" **PAID mode**\n\nChat: `{config.CHAT_MODEL if config.PROVIDER != 'azure_openai' else config.AZURE_CHAT_DEPLOYMENT}` ({provider_label})")
-        st.caption("Switch modes by setting RAG_MODE=free or RAG_MODE=paid in .env, then restart the app.")
+            st.write("No recent chats")
+        
         st.divider()
-        st.header("⚙️ Filters")
+        st.subheader("⚙️ Filters")
         depts = sorted({d["department"] for d in doc_summary if d["department"]})
         sens = sorted({d["sensitivity"] for d in doc_summary if d["sensitivity"]})
 
@@ -60,17 +231,28 @@ def main():
         selected_sens = st.multiselect("Sensitivity", options=sens or config.SENSITIVITY_LEVELS)
 
         st.divider()
-        st.header("📚 Knowledge Base")
-        st.metric("Indexed chunks", store.count())
-        st.metric("Indexed documents", len(doc_summary))
+        if config.RAG_MODE == "free":
+            st.info(f"**FREE mode**\n\nChat: `{config.OPENROUTER_CHAT_MODEL}` (OpenRouter)\n\nEmbeddings: `{config.LOCAL_EMBEDDING_MODEL}` (local)")
+        else:
+            provider_label = "Azure OpenAI" if config.PROVIDER == "azure_openai" else "OpenAI"
+            st.success(f" **PAID mode**\n\nChat: `{config.CHAT_MODEL if config.PROVIDER != 'azure_openai' else config.AZURE_CHAT_DEPLOYMENT}` ({provider_label})")
+        #st.caption("Switch modes by setting RAG_MODE=free or RAG_MODE=paid in .env, then restart the app.")
+        st.divider()
+        
+        
+        st.subheader("📚 Knowledge Base")
+        col1, col2 = st.columns([1, 1])
+        with col1:
+             st.metric("Indexed chunks", store.count(), border=True)
+        with col2:
+             st.metric("Indexed documents", len(doc_summary), border=True)
         with st.expander("View indexed documents"):
             for d in doc_summary:
                 st.write(f"**{d['title']}** — {d['department']} / {d['sensitivity']} (v{d['version']})")
 
-        st.divider()
-        if st.button("🗑️ Clear chat history"):
-            st.session_state.messages = []
-            st.rerun()
+        
+        
+
 
     if store.count() == 0:
         st.warning(
@@ -82,7 +264,8 @@ def main():
 
     # ---------------- Chat state ----------------
     if "messages" not in st.session_state:
-        st.session_state.messages = []
+        # load persisted history (if any) so history survives app restarts
+        st.session_state.messages = load_history()
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
@@ -93,6 +276,11 @@ def main():
     question = st.chat_input("Ask about HR policy, IT support, onboarding, or any indexed document...")
     if question:
         st.session_state.messages.append({"role": "user", "content": question})
+        # persist after user adds a message
+        try:
+            save_history(st.session_state.messages)
+        except Exception:
+            pass
         with st.chat_message("user"):
             st.markdown(question)
 
@@ -121,6 +309,11 @@ def main():
             "confidence": result["confidence"],
             "confidence_score": result["confidence_score"],
         })
+        # persist after assistant reply
+        try:
+            save_history(st.session_state.messages)
+        except Exception:
+            pass
 
 
 def render_citations(citations, confidence, confidence_score):
@@ -135,6 +328,9 @@ def render_citations(citations, confidence, confidence_score):
                     f"page {c['page']}, v{c['version']}  \n"
                     f"relevance score: `{c['score']}`"
                 )
+
+
+    
 
 
 if __name__ == "__main__":
