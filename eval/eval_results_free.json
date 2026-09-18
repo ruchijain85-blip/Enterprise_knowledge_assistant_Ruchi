@@ -1,12 +1,15 @@
 {
   "summary": {
-    "num_questions": 16,
-    "retrieval_hit_rate": 0.938,
-    "mean_reciprocal_rank": 0.812,
-    "avg_answer_keyword_coverage": 0.604,
-    "avg_latency_sec": 7.04,
+    "num_questions": 22,
+    "retrieval_hit_rate": 0.955,
+    "mean_reciprocal_rank": 0.818,
+    "avg_answer_keyword_coverage": 0.629,
+    "avg_rouge_l": 0.443,
+    "avg_bertscore_f1": 0.83,
+    "avg_llm_judge_score": 4.0,
+    "avg_latency_sec": 7.99,
     "confidence_distribution": {
-      "High": 16
+      "High": 22
     }
   },
   "results": [
@@ -22,7 +25,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "You normally accrue **21\u202fworking days of annual leave per year** \u2013 that is\u202f1.75\u202fdays each month\u202f[ S1 ].\n\n**Location\u2011specific variations**\n\n| Country / Region | Annual\u2011leave entitlement (per the handbook) |\n|------------------|---------------------------------------------|\n| United Kingdom  | 28\u202fdays\u202f(including bank holidays)\u202f[ S2 ] |\n| France           | Minimum 24\u202fworking days (company policy\u202f28\u202fdays)\u202f[ S4 ] |\n| Japan            | 10\u201120\u202fdays, depending on tenure\u202f[ S3 ] |\n| Brazil           | 30\u202fdays\u202f[ S3 ] |\n| Mexico           | 12\u202fdays (increases with tenure)\u202f[ S3 ] |\n| United Arab Emirates | 30\u202fcalendar days\u202f[ S3 ] |\n\nIf you are based in a country not listed above, the default company policy of 21\u202fworking days applies. For a definitive answer, check the **HR portal** or contact your local HR representative, who can confirm the correct entitlement for your specific location and employment contract.",
+      "answer": "You accrue **21\u202fworking days of annual leave per year** (which works out to\u202f1.75\u202fdays each month) under the standard Employee Leave Policy that applies to all permanent full\u2011time staff\u202f[ S1 ].\n\n**Note:** The amount can be higher in certain countries:\n\n* United\u202fKingdom \u2013 28\u202fdays (including bank holidays)\u202f[ S2 ]  \n* Japan \u2013 10\u201120\u202fdays, depending on tenure\u202f[ S3 ]  \n* Brazil \u2013 30\u202fdays\u202f[ S3 ]  \n* Mexico \u2013 12\u202fdays (increases with tenure)\u202f[ S3 ]  \n* United\u202fArab\u202fEmirates \u2013 30\u202fcalendar days\u202f[ S3 ]  \n* France \u2013 minimum 24\u202fworking days (company policy 28\u202fdays)\u202f[ S4 ]\n\nIf you need the exact entitlement for your location, check the country\u2011specific section of the Global Employee Handbook or contact your local HR representative.",
+      "reference_answer": "Employees accrue 21 working days of annual leave per year (1.75 days per month). Unused annual leave carries forward up to 10 days; any excess lapses on March 31.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -34,7 +38,19 @@
         "21",
         "1.75"
       ],
-      "latency_sec": 37.7
+      "rouge": {
+        "rouge1": 0.2676,
+        "rouge2": 0.1429,
+        "rougeL": 0.2535
+      },
+      "llm_judge_score": 4,
+      "llm_judge_reasoning": "The candidate correctly states the 21 working days per year (1.75 per month), matching the reference, but omits the carry\u2011forward rule (up to 10 days, excess lapses on March\u202f31), a key part of the reference answer.",
+      "latency_sec": 29.17,
+      "bertscore": {
+        "precision": 0.6937,
+        "recall": 0.8534,
+        "f1": 0.7653
+      }
     },
     {
       "id": "q2",
@@ -48,7 +64,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "If you see a **\u201cConnection Timed Out\u201d** error, follow these steps:\n\n1. Verify that your internet connection is working.  \n2. Confirm you are using the correct VPN gateway address (\u202fvpn.companyinternal.com\u202f).  \n3. Restart the GlobalProtect client service.  \n4. If the problem persists after **two** restarts, **escalate** the issue to the IT Helpdesk (raise a P2 ticket or call ext.\u202f4100)\u3010S1\u3011.  \n\nThese actions are the recommended fix for timeout problems in the VPN guide\u3010S1\u3011.",
+      "answer": "If you see a **\u201cConnection Timed Out\u201d** error, follow these steps:\n\n1. Verify that your internet connection is working.  \n2. Confirm you are using the correct VPN gateway address (e.g.,\u202fvpn.companyinternal.com).  \n3. Restart the GlobalProtect client service.  \n4. If the problem persists after **two** restarts, open a ticket or call the IT Helpdesk for escalation\u3010S1\u3011.",
+      "reference_answer": "If the VPN keeps timing out (\"Connection Timed Out\" error), check the internet connection, confirm the gateway address (vpn.companyinternal.com), and restart the GlobalProtect client service. If the issue persists after two restarts, escalate to the IT Helpdesk (raise a P2 ticket or call ext. 4100).",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -60,7 +77,19 @@
         "restart",
         "GlobalProtect"
       ],
-      "latency_sec": 5.89
+      "rouge": {
+        "rouge1": 0.6415,
+        "rouge2": 0.3654,
+        "rougeL": 0.5472
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate includes all key steps: checking internet, confirming gateway address, restarting the client, and escalating after two restarts, matching the reference answer.",
+      "latency_sec": 18.91,
+      "bertscore": {
+        "precision": 0.8247,
+        "recall": 0.9021,
+        "f1": 0.8617
+      }
     },
     {
       "id": "q3",
@@ -75,6 +104,7 @@
       "retrieval_hit": true,
       "mrr": 1.0,
       "answer": "A male employee is entitled to **10\u202fworking days of paternity leave**, which must be taken within three months of the child\u2019s birth\u3010S1\u3011.",
+      "reference_answer": "A male employee is entitled to 10 working days of paternity leave, which must be taken within three months of the child's birth.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -86,7 +116,19 @@
         "10",
         "working days"
       ],
-      "latency_sec": 2.04
+      "rouge": {
+        "rouge1": 0.9796,
+        "rouge2": 0.9787,
+        "rougeL": 0.9796
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate answer exactly matches the reference, providing the same key facts without any errors.",
+      "latency_sec": 3.74,
+      "bertscore": {
+        "precision": 0.8988,
+        "recall": 0.9731,
+        "f1": 0.9345
+      }
     },
     {
       "id": "q4",
@@ -100,7 +142,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "The IT department is responsible for provisioning a new employee\u2019s laptop (as well as corporate email and Slack)\u202f\u2014\u202ftypically three days before the employee\u2019s start date\u3010S1\u3011.",
+      "answer": "The **IT department** is responsible for provisioning the new hire\u2019s laptop (as well as corporate email and Slack)\u202f\u2014\u202fit must be set up\u202f3\u202fdays before the employee\u2019s start date\u3010S1\u3011.",
+      "reference_answer": "IT is responsible for provisioning the new employee's laptop, corporate email, and Slack account, 3 days before the joining date, during the Pre-Joining (T-7 to T-1 days) stage.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -110,30 +153,58 @@
       "expected_keywords": [
         "IT"
       ],
-      "latency_sec": 4.51
+      "rouge": {
+        "rouge1": 0.6154,
+        "rouge2": 0.4127,
+        "rougeL": 0.5538
+      },
+      "llm_judge_score": 4,
+      "llm_judge_reasoning": "The candidate correctly states IT is responsible for provisioning the laptop, email, and Slack 3 days before the start date, matching the core facts, but omits the specific Pre-Joining (T-7 to T-1 days) stage detail.",
+      "latency_sec": 4.34,
+      "bertscore": {
+        "precision": 0.8318,
+        "recall": 0.859,
+        "f1": 0.8452
+      }
     },
     {
       "id": "q5",
       "question": "What happens if I don't receive the MFA push notification on my phone?",
       "expected_source": "IT_VPN_Support_Guide.docx",
       "retrieved_sources": [
-        "IT_Password_Security_Policy_v1.pdf",
+        "IT_VPN_Support_Guide.docx",
         "IT_VPN_Support_Guide.docx",
         "Information_Security_Awareness_Training.pptx",
-        "IT_Password_Security_Policy_v1.pdf"
+        "Global_Employee_Handbook.pdf"
       ],
       "retrieval_hit": true,
-      "mrr": 0.5,
-      "answer": "The documents you have don\u2019t spell out a specific \u201cwhat\u2011to\u2011do\u201d step for a missing MFA push notification.\u202fWhat they do say is:\n\n*\u202fMFA is required for all corporate accounts (per the Password and Account Security Policy)\u202f[S3].  \n*\u202fIf you encounter an authentication\u2011related issue (such as a VPN login problem) that you can\u2019t resolve, the VPN Access and Troubleshooting Guide instructs you to raise a P2 ticket on the IT Service Portal or contact the IT Helpdesk at extension\u202f4100 (business hours)\u202f[S2].\n\nBecause a failed MFA push is an authentication problem, the safest next step is to contact the IT Helpdesk (or open a ticket) for assistance. If you need a more detailed procedure, you should ask the IT Security team or refer to any updated MFA troubleshooting documentation that may exist beyond the excerpts provided.",
+      "mrr": 1.0,
+      "answer": "If you don\u2019t get the MFA push on your phone, first verify that **Okta\u202fVerify is installed and that its clock is correctly synced**. Then select **\u201cResend push.\u201d** If a prompt still hasn\u2019t arrived after about two minutes, use your **backup SMS code** to complete authentication\u3010S1\u3011. (The VPN guide also notes that authentication is done with corporate SSO credentials and MFA via Okta\u202fVerify\u3010S2\u3011.)",
+      "reference_answer": "If the MFA push notification isn't received, ensure Okta Verify is installed and time-synced, try \"Resend push\", and if no prompt arrives within 2 minutes, use the backup SMS code.",
       "confidence": "High",
       "confidence_score": 1.0,
-      "keyword_coverage": 0.0,
-      "matched_keywords": [],
+      "keyword_coverage": 1.0,
+      "matched_keywords": [
+        "resend",
+        "SMS"
+      ],
       "expected_keywords": [
         "resend",
         "SMS"
       ],
-      "latency_sec": 4.83
+      "rouge": {
+        "rouge1": 0.46,
+        "rouge2": 0.2041,
+        "rougeL": 0.4
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate includes all key facts from the reference\u2014checking Okta Verify installation and time sync, resending the push, and using the backup SMS code after ~2 minutes\u2014without any contradictions.",
+      "latency_sec": 5.97,
+      "bertscore": {
+        "precision": 0.7685,
+        "recall": 0.888,
+        "f1": 0.8239
+      }
     },
     {
       "id": "q6",
@@ -147,7 +218,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "No.\u202fAccording to the Employee Leave Policy, sick leave (12\u202fdays per year) \u201cis not carried forward\u201d\u202f[S1].",
+      "answer": "No.\u202fAccording to the Employee Leave Policy, sick leave (12\u202fdays per year) \u201cis not carried forward\u201d to the next year\u202f[S1].",
+      "reference_answer": "No, unused sick leave cannot be carried forward to the next year; only annual leave carries forward (up to 10 days). Sick leave and casual leave are not eligible for carry-forward.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 0.5,
@@ -158,7 +230,19 @@
         "cannot",
         "no"
       ],
-      "latency_sec": 3.05
+      "rouge": {
+        "rouge1": 0.4815,
+        "rouge2": 0.2308,
+        "rougeL": 0.3333
+      },
+      "llm_judge_score": 4,
+      "llm_judge_reasoning": "The candidate correctly states that unused sick leave cannot be carried forward, matching the key fact. It omits the additional detail about annual leave carry\u2011forward, but does not introduce any errors.",
+      "latency_sec": 5.36,
+      "bertscore": {
+        "precision": 0.8189,
+        "recall": 0.8616,
+        "f1": 0.8397
+      }
     },
     {
       "id": "q7",
@@ -172,7 +256,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 0.0,
-      "answer": "**Answer:**  \nAn employee can be reimbursed for a business\u2011class upgrade on international travel only if the upgrade is **justified and pre\u2011approved**.  \n\n* **Approval level** \u2013 Upgrades generally require **Director approval** (or higher)\u202f[S2][S4].  \n* **Flight\u2011duration rule** \u2013 For flights longer than\u202f10\u202fhours (which most international trips are), the **Travel Policy** specifies that **VP\u2011plus approval** is required\u202f[S1].  \n* **Reimbursement conditions** \u2013 The expense must be documented with an itemized receipt and submitted **within\u202f60\u202fdays of the travel date**\u202f[S2].  \n* **Personal items** (e.g., minibar charges) are not reimbursable\u202f[S2][S4].\n\n**If you need the upgrade approved**, submit a justification to your Director (or VP for >10\u2011hour flights) and obtain the required approval before booking. Then keep the receipt and file the claim within the 60\u2011day window.  \n\n*If you are unsure whether your flight exceeds the 10\u2011hour threshold or need help obtaining the appropriate approval, contact People Ops or Finance for clarification.*",
+      "answer": "International travel can be reimbursed for a business\u2011class upgrade **only if the upgrade is justified and pre\u2011approved**.  \n\n* **Approval needed** \u2013 Upgrades to business class require a justification and **Director\u2011level approval** (or higher). If the flight exceeds\u202f10\u202fhours, the Air\u2011Travel matrix in the Travel Policy also mandates **VP\u2011plus approval**\u202f[S1].  \n* **Reimbursement conditions** \u2013 The expense must be supported by an itemized receipt and submitted **within\u202f60\u202fdays** of the travel date\u202f[S2]. Personal items (e.g., minibar charges) are not reimbursable\u202f[S2][S4].  \n\nSo, an employee traveling internationally may be reimbursed for a business\u2011class upgrade only when the upgrade is justified, receives the required Director (or VP\u2011plus for >10\u2011hour flights) approval, and the receipt is filed within the 60\u2011day window. If you need clarification on the approval workflow, contact People Ops or your Finance liaison.",
+      "reference_answer": "The available documents do not contain a specific reimbursement policy for business class upgrades on international travel. The Travel and Expense Reimbursement Policy states Business Class requires VP+ approval for flights over 10 hours, but does not address a separate upgrade reimbursement -- check with Finance (expenses@company.com) for this specific scenario.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 0.0,
@@ -183,7 +268,19 @@
         "no information",
         "not contain"
       ],
-      "latency_sec": 19.74
+      "rouge": {
+        "rouge1": 0.3196,
+        "rouge2": 0.0729,
+        "rougeL": 0.1856
+      },
+      "llm_judge_score": 1,
+      "llm_judge_reasoning": "The candidate adds details (justification, Director-level approval, 60\u2011day receipt window) that are not in the reference and contradicts the reference's statement that no specific reimbursement policy exists and to check with Finance.",
+      "latency_sec": 10.49,
+      "bertscore": {
+        "precision": 0.719,
+        "recall": 0.8324,
+        "f1": 0.7715
+      }
     },
     {
       "id": "q8",
@@ -197,19 +294,33 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "You can work remotely up to **5 days per week** (i.e., fully remote) if your role is eligible\u202f\u2014\u202fthe 2\u2011day\u2011per\u2011week limit from the 2024 version no longer applies\u3010S1\u3011\u3010S4\u3011.",
+      "answer": "You can work remotely up to\u202f5\u202fdays per week\u202f\u2014\u202feligible employees may work fully remotely at their discretion.\u202fThe 2\u2011day\u2011per\u2011week limit from the older version is no longer in effect\u3010S1\u3011\u3010S4\u3011\u3010S3\u3011.",
+      "reference_answer": "Employees in eligible roles may work remotely up to 5 days per week at their discretion; there is no company-wide cap on remote days, though teams may set local in-person collaboration norms.",
       "confidence": "High",
       "confidence_score": 1.0,
-      "keyword_coverage": 0.3333333333333333,
+      "keyword_coverage": 0.6666666666666666,
       "matched_keywords": [
-        "5"
+        "5",
+        "discretion"
       ],
       "expected_keywords": [
         "5",
         "no cap",
         "discretion"
       ],
-      "latency_sec": 4.67
+      "rouge": {
+        "rouge1": 0.5352,
+        "rouge2": 0.3188,
+        "rougeL": 0.3944
+      },
+      "llm_judge_score": 4,
+      "llm_judge_reasoning": "The candidate correctly states the 5\u2011day remote allowance and discretion for eligible employees, matching the key fact, but omits the nuance about teams setting local collaboration norms.",
+      "latency_sec": 11.73,
+      "bertscore": {
+        "precision": 0.7761,
+        "recall": 0.8373,
+        "f1": 0.8056
+      }
     },
     {
       "id": "q9",
@@ -217,13 +328,14 @@
       "expected_source": "IT_Password_Security_Policy_v2.pdf",
       "retrieved_sources": [
         "IT_Password_Security_Policy_v2.pdf",
-        "IT_Password_Security_Policy_v1.pdf",
         "Information_Security_Awareness_Training.pptx",
-        "IT_Password_Security_Policy_v1.pdf"
+        "IT_Password_Security_Policy_v2.pdf",
+        "IT_Password_Security_Policy_v2.pdf"
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "Yes. Under the current (v2.0)\u202fPassword and Account Security Policy, multi\u2011factor authentication (Okta\u202fVerify) is mandatory for **all corporate accounts and applications**, not just finance and HR systems\u3010S1\u3011. The security awareness training also reinforces that \u201cMFA is mandatory for all corporate accounts, per the Password and Account Security Policy\u201d\u3010S3\u3011.",
+      "answer": "MFA is required for **all corporate accounts and applications**\u2014the policy no longer limits MFA to finance and HR systems.\u202fThe current (v2.0) Password and Account Security Policy states that \u201cMFA (Okta Verify) is now mandatory for all corporate accounts and applications, not just finance and HR systems\u201d\u202f[S1] and the security awareness training reinforces that \u201cMFA is mandatory for all corporate accounts\u201d\u202f[S2].  \n\n(Previous v1.0 policy applied MFA only to finance/HR, but v2.0 supersedes it.)",
+      "reference_answer": "MFA (Okta Verify) is mandatory for all corporate accounts and applications, not just finance and HR systems, effective immediately under the current policy.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -235,21 +347,34 @@
         "all",
         "mandatory"
       ],
-      "latency_sec": 5.53
+      "rouge": {
+        "rouge1": 0.3883,
+        "rouge2": 0.3366,
+        "rougeL": 0.3689
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate correctly states that MFA (Okta Verify) is mandatory for all corporate accounts and applications, not just finance and HR, matching the reference without any contradictions.",
+      "latency_sec": 3.35,
+      "bertscore": {
+        "precision": 0.786,
+        "recall": 0.9087,
+        "f1": 0.8429
+      }
     },
     {
       "id": "q10",
       "question": "What is the minimum password length required by IT policy?",
       "expected_source": "IT_Password_Security_Policy_v2.pdf",
       "retrieved_sources": [
-        "IT_Password_Security_Policy_v1.pdf",
         "IT_Password_Security_Policy_v2.pdf",
         "IT_Password_Security_Policy_v2.pdf",
-        "IT_Password_Security_Policy_v2.pdf"
+        "IT_Password_Security_Policy_v2.pdf",
+        "Global_Employee_Handbook.pdf"
       ],
       "retrieval_hit": true,
-      "mrr": 0.5,
-      "answer": "The current IT policy requires a **minimum password (passphrase) length of\u202f12\u202fcharacters**\u3010S2\u3011\u3010S3\u3011. This requirement is part of version\u202f2.0, which supersedes the earlier 8\u2011character rule in version\u202f1.0.",
+      "mrr": 1.0,
+      "answer": "The IT policy requires a minimum password (passphrase) length of **12 characters**\u3010S1\u3011\u3010S2\u3011.",
+      "reference_answer": "The minimum password length required is 12 characters (a passphrase).",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -259,7 +384,19 @@
       "expected_keywords": [
         "12"
       ],
-      "latency_sec": 2.45
+      "rouge": {
+        "rouge1": 0.75,
+        "rouge2": 0.1818,
+        "rougeL": 0.5
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate correctly states the minimum password length as 12 characters, matching the reference answer exactly.",
+      "latency_sec": 3.12,
+      "bertscore": {
+        "precision": 0.7987,
+        "recall": 0.9284,
+        "f1": 0.8586
+      }
     },
     {
       "id": "q11",
@@ -273,7 +410,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "Support should page the **SRE on\u2011call (SRE Capacity)** for a customer\u2011impacting issue on a Dedicated\u2011tier deployment.\u202fThe Dedicated escalation path defaults to SRE Capacity for scaling or capacity\u2011related symptoms, with the Platform team consulted only for control\u2011plane or policy\u2011configuration issues\u3010S3\u3011.\u202fFor after\u2011hours P0/P1 incidents affecting Dedicated (or Enterprise/Private), the process is to initiate a bridge and page the relevant on\u2011call, which for Dedicated is the SRE on\u2011call\u3010S4\u3011.",
+      "answer": "Support should page the **SRE on\u2011call (SRE Capacity)** for a Dedicated\u2011tier customer\u2011impacting issue.\u202fThe Dedicated tier escalation summary says the default owner is \u201c**SRE Capacity** for scaling/capacity symptoms\u201d and that the Platform team is consulted only for control\u2011plane or policy\u2011configuration problems\u3010S3\u3011.\u202fAdditionally, the after\u2011hours rules state that for P0/P1 incidents affecting Dedicated deployments, Support initiates a bridge and pages the relevant on\u2011call, which is the SRE on\u2011call team\u3010S4\u3011.  \n\nSo, the primary contact to page is the **SRE on\u2011call (SRE Capacity)**; involve the Platform on\u2011call only if the issue is specifically a control\u2011plane or policy\u2011configuration matter.",
+      "reference_answer": "Support should classify the ticket by severity and page the owning on-call per the routing table -- for a Dedicated tier issue this is typically SRE On-Call (Capacity) for capacity/autoscaling/GPU pool stability problems, via PagerDuty (pd-redwood-sre-capacity). If it meets Sev0/Sev1 criteria, Support should also start a Slack bridge in #incidents immediately.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 0.3333333333333333,
@@ -285,7 +423,19 @@
         "on-call",
         "oncall"
       ],
-      "latency_sec": 1.91
+      "rouge": {
+        "rouge1": 0.3432,
+        "rouge2": 0.1317,
+        "rougeL": 0.2485
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The answer includes all key points: page the SRE Capacity on-call for Dedicated tier issues and start a bridge for high\u2011severity (P0/P1) incidents, matching the reference without contradictions.",
+      "latency_sec": 1.85,
+      "bertscore": {
+        "precision": 0.7901,
+        "recall": 0.8195,
+        "f1": 0.8045
+      }
     },
     {
       "id": "q12",
@@ -299,7 +449,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "The Atlas launch achieved **40,000 active users in the first 30\u202fdays**, which is **114\u202f% of the 35,000\u2011user target**\u3010S1\u3011\u3010S3\u3011.",
+      "answer": "The Atlas launch achieved **40,000 active users in the first 30\u202fdays**, surpassing the target of 35,000 and reaching **114\u202f% of the goal**\u3010S1\u3011\u3010S3\u3011.",
+      "reference_answer": "The Atlas release reached 40,000 active users within the first 30 days, against a target of 35,000 (114% of target).",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 0.5,
@@ -310,29 +461,56 @@
         "40,000",
         "40000"
       ],
-      "latency_sec": 3.49
+      "rouge": {
+        "rouge1": 0.6939,
+        "rouge2": 0.4681,
+        "rougeL": 0.6531
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate includes all key facts\u201440,000 active users in 30 days, target 35,000, and 114% of target\u2014matching the reference exactly.",
+      "latency_sec": 3.58,
+      "bertscore": {
+        "precision": 0.8033,
+        "recall": 0.924,
+        "f1": 0.8594
+      }
     },
     {
       "id": "q13",
       "question": "What is Northwind's Annual Recurring Revenue (ARR)?",
       "expected_source": "Q3_FY2026_Financial_Report.pdf",
       "retrieved_sources": [
+        "Q3_FY2026_Financial_Report.pdf",
+        "Q3_FY2026_Financial_Report.pdf",
         "Global_Employee_Handbook.pdf",
-        "HR_Employee_Benefits_Guide.pdf",
-        "Global_Employee_Handbook.pdf",
-        "Global_Employee_Handbook.pdf"
+        "HR_Employee_Benefits_Guide.pdf"
       ],
-      "retrieval_hit": false,
-      "mrr": 0.0,
-      "answer": "The provided excerpts do not contain any information about Northwind Analytics,\u202fInc.\u2019s Annual Recurring Revenue (ARR). To obtain that figure, you should contact the Finance department or refer to the company\u2019s internal financial reporting documents.",
+      "retrieval_hit": true,
+      "mrr": 1.0,
+      "answer": "Northwind Analytics\u202fInc.\u2019s Annual Recurring Revenue (ARR) at the end of Q3 FY2026 was **$82.6\u202fmillion**\u3010S1\u3011\u3010S2\u3011.",
+      "reference_answer": "Northwind's Annual Recurring Revenue (ARR) is $82.6M.",
       "confidence": "High",
       "confidence_score": 1.0,
-      "keyword_coverage": 0.0,
-      "matched_keywords": [],
+      "keyword_coverage": 1.0,
+      "matched_keywords": [
+        "82.6"
+      ],
       "expected_keywords": [
         "82.6"
       ],
-      "latency_sec": 1.26
+      "rouge": {
+        "rouge1": 0.4828,
+        "rouge2": 0.2963,
+        "rougeL": 0.4828
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate provides the exact ARR figure of $82.6\u202fmillion, matching the reference answer; the additional context does not contradict the fact.",
+      "latency_sec": 1.43,
+      "bertscore": {
+        "precision": 0.7454,
+        "recall": 0.9243,
+        "f1": 0.8253
+      }
     },
     {
       "id": "q14",
@@ -346,7 +524,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "The report recommends **reallocating $150\u202fK of the Q3 favorable variance from Engineering to Operations** to cover the facilities\u2011maintenance overrun, subject to CFO approval\u3010S1\u3011.",
+      "answer": "The report recommends reallocating **$150\u202fK** of the Q3 favorable variance from **Engineering** to **Operations** to cover the facilities\u2011maintenance overrun, subject to CFO approval\u3010S1\u3011.",
+      "reference_answer": "The recommendation is to reallocate $150K of the Q3 favorable variance from Engineering to Operations to cover the facilities maintenance overrun, pending CFO approval.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -358,7 +537,19 @@
         "150",
         "Engineering"
       ],
-      "latency_sec": 2.72
+      "rouge": {
+        "rouge1": 0.84,
+        "rouge2": 0.625,
+        "rougeL": 0.8
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate answer includes all key facts from the reference\u2014$150K amount, Q3 favorable variance, reallocation from Engineering to Operations, covering facilities maintenance overrun, and CFO approval\u2014without any errors.",
+      "latency_sec": 3.77,
+      "bertscore": {
+        "precision": 0.8289,
+        "recall": 0.9212,
+        "f1": 0.8726
+      }
     },
     {
       "id": "q15",
@@ -372,7 +563,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "The policy sets the retention period for **security incident records at\u202f7\u202fyears** (to satisfy compliance/audit requirements)\u3010S1\u3011.\u202fIf a record is subject to a litigation hold or regulatory inquiry, it must be kept longer until the hold is released\u3010S1\u3011.",
+      "answer": "The policy sets the retention period for **security incident records at\u202f7\u202fyears** (to satisfy compliance/audit requirements)\u202f[S1].\u202fIf a record is subject to a litigation hold, it must be kept longer until the hold is released\u202f[S1].",
+      "reference_answer": "Security incident records must be retained for 7 years, per the compliance/audit requirement in the Records Retention Policy.",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 0.0,
@@ -380,7 +572,19 @@
       "expected_keywords": [
         "7 years"
       ],
-      "latency_sec": 4.04
+      "rouge": {
+        "rouge1": 0.5517,
+        "rouge2": 0.2143,
+        "rougeL": 0.3103
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate correctly states the 7\u2011year retention period as in the reference and adds extra, non\u2011contradictory detail, so it fully conveys the required fact.",
+      "latency_sec": 6.01,
+      "bertscore": {
+        "precision": 0.7738,
+        "recall": 0.8995,
+        "f1": 0.8319
+      }
     },
     {
       "id": "q16",
@@ -394,7 +598,8 @@
       ],
       "retrieval_hit": true,
       "mrr": 1.0,
-      "answer": "The handbook states that employees based in Germany are required by law to receive **a minimum of\u202f24\u202fworking days of annual leave per year** (the company\u2019s own policy provides 28 days)\u3010S1\u3011.",
+      "answer": "The statutory minimum annual\u2011leave entitlement for employees based in Germany is **24 working days per year** (the company\u2019s own policy provides a higher entitlement of 28 days)\u3010S1\u3011.",
+      "reference_answer": "Per the Global Employee Handbook's country appendix, Germany's statutory minimum annual leave is 24 working days (company policy provides 28 days).",
       "confidence": "High",
       "confidence_score": 1.0,
       "keyword_coverage": 1.0,
@@ -406,7 +611,247 @@
         "24",
         "28"
       ],
-      "latency_sec": 8.73
+      "rouge": {
+        "rouge1": 0.6792,
+        "rouge2": 0.3137,
+        "rougeL": 0.5283
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate repeats both key facts from the reference: 24 statutory working days and a company policy of 28 days, with no errors or omissions.",
+      "latency_sec": 2.58,
+      "bertscore": {
+        "precision": 0.7949,
+        "recall": 0.875,
+        "f1": 0.833
+      }
+    },
+    {
+      "id": "q17",
+      "question": "Do I need to change my password every 90 days?",
+      "expected_source": "IT_Password_Security_Policy_v2.pdf",
+      "retrieved_sources": [
+        "IT_Password_Security_Policy_v2.pdf",
+        "IT_Password_Security_Policy_v2.pdf",
+        "IT_Password_Security_Policy_v2.pdf",
+        "IT_Password_Security_Policy_v2.pdf"
+      ],
+      "retrieval_hit": true,
+      "mrr": 1.0,
+      "answer": "No.\u202fThe 90\u2011day mandatory password rotation has been removed in the current (v2.0) Password and Account Security Policy; passwords are now required to be at least 12\u2011character passphrases and continuous MFA verification replaces periodic resets\u3010S3\u3011\u3010S4\u3011.",
+      "reference_answer": "No -- the mandatory 90-day password rotation requirement has been removed under the current (v2.0) Password and Account Security Policy and replaced by continuous MFA verification. The 90-day rotation rule from the 2023 (v1.0) policy is no longer in effect and should be disregarded.",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 0.5,
+      "matched_keywords": [
+        "removed"
+      ],
+      "expected_keywords": [
+        "removed",
+        "no longer"
+      ],
+      "rouge": {
+        "rouge1": 0.6207,
+        "rouge2": 0.3765,
+        "rougeL": 0.5057
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate includes all key facts from the reference\u2014no need to change password every 90 days, the rule was removed in v2.0, and continuous MFA now replaces it\u2014without contradictions.",
+      "latency_sec": 3.61,
+      "bertscore": {
+        "precision": 0.8335,
+        "recall": 0.879,
+        "f1": 0.8556
+      }
+    },
+    {
+      "id": "q18",
+      "question": "What is the ratio of Northwind Labs' Q3 departmental spend to Northwind Analytics' consolidated Q3 revenue?",
+      "expected_source": null,
+      "retrieved_sources": [
+        "Q3_FY2026_Financial_Report.pdf",
+        "Q3_FY2026_Financial_Report.pdf",
+        "Finance_Q3_Budget_Report.pptx",
+        "Finance_Q3_Budget_Report.pptx"
+      ],
+      "retrieval_hit": true,
+      "mrr": 0.0,
+      "answer": "I\u2019m unable to calculate that ratio because the Q3 FY2026 Departmental Budget Report excerpts you provided do not include the actual dollar amount of Northwind Labs\u2019 Q3 departmental operating spend. The consolidated Q3 FY2026 revenue is stated as **$19.8\u202fM**\u3010S2\u3011, but the spend figure for Northwind Labs is not listed in the excerpts.\n\nTo determine the ratio, you\u2019ll need the specific Q3 spend amount for Northwind Labs from the full Departmental Budget Report (or the underlying budget data). You can obtain it by:\n\n* Reviewing the complete **Q3 FY2026 Departmental Budget Report** (see the full PDF referenced in S3), or  \n* Contacting the **Northwind Analytics FP&A Team** at **finance-fpa@company.com** for the spend details\u3010S3\u3011.",
+      "reference_answer": "Northwind Labs' Q3 departmental spend was $4.2M and Northwind Analytics' consolidated Q3 revenue was $19.8M, giving a ratio of roughly 21% ($4.2M / $19.8M ~= 21%).",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 0.3333333333333333,
+      "matched_keywords": [
+        "19.8"
+      ],
+      "expected_keywords": [
+        "4.2",
+        "19.8",
+        "21"
+      ],
+      "rouge": {
+        "rouge1": 0.1892,
+        "rouge2": 0.0685,
+        "rougeL": 0.1351
+      },
+      "llm_judge_score": 1,
+      "llm_judge_reasoning": "The candidate answer fails to provide the $4.2M spend and the resulting 21% ratio given in the reference, instead claiming the data is missing.",
+      "latency_sec": 6.87,
+      "bertscore": {
+        "precision": 0.7054,
+        "recall": 0.8191,
+        "f1": 0.758
+      }
+    },
+    {
+      "id": "q19",
+      "question": "What is the maximum dollar allowance for a business class flight upgrade under the Travel and Expense Policy?",
+      "expected_source": null,
+      "retrieved_sources": [
+        "Finance_Travel_Expense_Reimbursement_Policy.pdf",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt"
+      ],
+      "retrieval_hit": true,
+      "mrr": 0.0,
+      "answer": "The Travel and Expense Reimbursement Policy does **not** specify a dollar\u2011cap for a business\u2011class flight upgrade. It only defines when a business\u2011class seat may be used (flights over\u202f10\u202fhours) and that a VP\u2011or\u2011higher approval is required\u202f[S1]. Other sections of the Operations Ecosystem Handbook similarly note that upgrades must be justified and approved (e.g., Director approval for premium\u2011economy upgrades) but do not provide a monetary limit\u202f[S3][S4].\n\n**What to do next:**\u202fIf you need a concrete dollar limit for budgeting or approval purposes, contact the Finance team (or People Ops for travel approvals) to confirm any internal cost\u2011control thresholds that may apply to business\u2011class upgrades.",
+      "reference_answer": "The Travel and Expense Reimbursement Policy does not specify a maximum dollar allowance for a business class flight upgrade. It states Business Class is permitted (with VP+ approval) for flights over 10 hours, but no specific dollar amount or \"upgrade allowance\" is defined anywhere in the policy.",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 0.0,
+      "matched_keywords": [],
+      "expected_keywords": [
+        "cannot find",
+        "don't have",
+        "no information",
+        "not specify",
+        "does not specify",
+        "no dollar",
+        "no specific amount"
+      ],
+      "rouge": {
+        "rouge1": 0.4172,
+        "rouge2": 0.2484,
+        "rougeL": 0.3436
+      },
+      "llm_judge_score": 5,
+      "llm_judge_reasoning": "The candidate accurately repeats that no dollar cap is specified, mentions the 10\u2011hour rule and VP+ approval, and adds no contradictory information.",
+      "latency_sec": 11.48,
+      "bertscore": {
+        "precision": 0.7764,
+        "recall": 0.8914,
+        "f1": 0.8299
+      }
+    },
+    {
+      "id": "q20",
+      "question": "What is South Africa's standard work week according to the Global Employee Handbook's country appendix?",
+      "expected_source": "Global_Employee_Handbook.pdf",
+      "retrieved_sources": [
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf"
+      ],
+      "retrieval_hit": true,
+      "mrr": 1.0,
+      "answer": "South Africa\u2019s standard work week is\u202f48\u202fhours\u202fper week\u3010S1\u3011.",
+      "reference_answer": "According to the Global Employee Handbook's country appendix, South Africa's standard work week is 45 hours.",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 0.0,
+      "matched_keywords": [],
+      "expected_keywords": [
+        "45"
+      ],
+      "rouge": {
+        "rouge1": 0.5333,
+        "rouge2": 0.4286,
+        "rougeL": 0.5333
+      },
+      "llm_judge_score": 1,
+      "llm_judge_reasoning": "The candidate answer states 48 hours, which contradicts the reference answer of 45 hours, providing an incorrect fact.",
+      "latency_sec": 4.36,
+      "bertscore": {
+        "precision": 0.8415,
+        "recall": 0.84,
+        "f1": 0.8407
+      }
+    },
+    {
+      "id": "q21",
+      "question": "What approval is required for a $30,000 purchase under the Procurement Standard Operating Procedure?",
+      "expected_source": "Finance_Procurement_SOP.pdf",
+      "retrieved_sources": [
+        "Finance_Procurement_SOP.pdf",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt",
+        "dsid_37db737f77a6446883ddf996621ff64f__ops-ecosystem-handbook-2026.txt"
+      ],
+      "retrieval_hit": true,
+      "mrr": 1.0,
+      "answer": "A $30,000 purchase falls in the **$10,000\u202f\u2013\u202f$50,000** bracket of the Procurement Standard Operating Procedure. For this range the SOP requires **Finance approval** and **at least two competitive quotes** (and a purchase order) before the spend can be authorized\u3010S1\u3011.",
+      "reference_answer": "A $30,000 purchase falls in the $10,000-$50,000 tier of the Procurement SOP, which requires Finance approval (in addition to Manager + Department Head approval) and 2 competitive quotes.",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 1.0,
+      "matched_keywords": [
+        "Finance approval",
+        "quotes"
+      ],
+      "expected_keywords": [
+        "Finance approval",
+        "quotes"
+      ],
+      "rouge": {
+        "rouge1": 0.5676,
+        "rouge2": 0.4444,
+        "rougeL": 0.5676
+      },
+      "llm_judge_score": 3,
+      "llm_judge_reasoning": "The candidate correctly identifies the $10,000\u2011$50,000 tier, Finance approval, and two competitive quotes, but omits the required Manager and Department Head approvals and adds unrelated detail.",
+      "latency_sec": 11.97,
+      "bertscore": {
+        "precision": 0.83,
+        "recall": 0.9104,
+        "f1": 0.8683
+      }
+    },
+    {
+      "id": "q22",
+      "question": "If I quit my job, do I get paid for the vacation days I didn't use?",
+      "expected_source": "HR_Leave_Policy.pdf",
+      "retrieved_sources": [
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf",
+        "Global_Employee_Handbook.pdf"
+      ],
+      "retrieval_hit": false,
+      "mrr": 0.0,
+      "answer": "The handbook excerpts you provided describe the amount of annual leave you accrue and the notice periods required for resignation, but they do **not** state whether unused vacation days are paid out when you quit. Because that detail isn\u2019t covered in the sections on France, the United Kingdom, Japan, Brazil, Mexico, or the United Arab Emirates, I can\u2019t confirm the payout rule from the available information.\n\n**What to do next:**\u202fCheck your country\u2011specific employment contract or contact your local HR team for clarification on the policy for paying out accrued but untaken vacation when you resign.\u202f[S1],\u202f[S3],\u202f[S4] (these sections discuss leave entitlements and notice periods but do not address payout of unused leave).",
+      "reference_answer": "Yes -- upon resignation, unused annual leave is eligible for encashment (up to the 10-day carry-forward cap) at your last drawn basic salary rate, under the Unused Leave Encashment section. Sick and casual leave are not eligible for encashment.",
+      "confidence": "High",
+      "confidence_score": 1.0,
+      "keyword_coverage": 0.0,
+      "matched_keywords": [],
+      "expected_keywords": [
+        "encashment",
+        "10"
+      ],
+      "rouge": {
+        "rouge1": 0.2278,
+        "rouge2": 0.0256,
+        "rougeL": 0.1139
+      },
+      "llm_judge_score": 1,
+      "llm_judge_reasoning": "The candidate answer says the policy is unknown and not covered, directly contradicting the reference which clearly states unused annual leave is encashed, thus it fails to convey the correct facts.",
+      "latency_sec": 22.1,
+      "bertscore": {
+        "precision": 0.7006,
+        "recall": 0.7775,
+        "f1": 0.7371
+      }
     }
   ]
 }

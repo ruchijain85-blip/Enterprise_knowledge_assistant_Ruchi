@@ -114,11 +114,6 @@
     "chunk_count": 2,
     "last_ingested": "2026-08-23T09:30:51.567509"
   },
-  "data/sample_docs/IT_Password_Security_Policy_v1.pdf": {
-    "hash": "bdb652aa9a352c024c40429c099076dd654ed2d979c7a53a4cb8effa47db54f4",
-    "chunk_count": 4,
-    "last_ingested": "2026-08-23T09:30:51.609344"
-  },
   "data/sample_docs/IT_Password_Security_Policy_v2.pdf": {
     "hash": "30b6c453c410c35917c6f56fcd5bade7eb4f3fb9924d5829f3b1e7b895377a32",
     "chunk_count": 4,
@@ -268,5 +263,10 @@
     "hash": "f94f4eb1157175b33e47004f5cbf09b00bf666a01ad363a7f21d9526bf3342bf",
     "chunk_count": 22,
     "last_ingested": "2026-08-23T09:59:22.480453"
+  },
+  "data/sample_docs/Q3_FY2026_Financial_Report.pdf": {
+    "hash": "ff8265facc3f93e3f8521aed17ea7749473879bf5f8fcb4c92bb3d854cb133df",
+    "chunk_count": 2,
+    "last_ingested": "2026-09-18T18:11:46.951105"
   }
 }
